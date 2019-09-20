@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import CharacterList from './CharacterList';
 import { charactersUrl } from '../api/urls';
 
 const CharactersContainer = props => {
@@ -27,6 +28,7 @@ const CharactersContainer = props => {
   return (
     <div>
       <div>CharactersContainer</div>
+      <CharacterList characters={data.results} />
       <button onClick={() => setPageNumber(pageNumber + 1)}>get next page</button>
     </div>
   );
