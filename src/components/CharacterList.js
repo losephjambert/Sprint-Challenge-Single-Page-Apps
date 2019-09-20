@@ -1,5 +1,6 @@
 import React from 'react';
 import CharacterCard from './CharacterCard';
+import { Link } from 'react-router-dom';
 
 export default function CharacterList({ characters, searchTerm }) {
   characters = characters || [];
@@ -10,7 +11,9 @@ export default function CharacterList({ characters, searchTerm }) {
   return (
     <ul>
       {characters.map((character, i) => (
-        <CharacterCard key={i} character={character} />
+        <div key={character.id}>
+          <Link to={`/characters/${character.id}`}>{character.name}</Link>
+        </div>
       ))}
     </ul>
   );
