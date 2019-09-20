@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from 'react';
+import CharacterCard from './CharacterCard';
+import { Link } from 'react-router-dom';
 
-export default function CharacterList() {
-  // TODO: Add useState to track data from useEffect
-
-  useEffect(() => {
-    // TODO: Add API Request here - must run in `useEffect`
-    //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
-  }, []);
-
+export default function CharacterList({ characters, searchTerm }) {
+  characters = characters || [];
+  if (characters.length < 1) return null;
+  if (searchTerm.length > 0) {
+    characters = characters.filter(character => character.name.toLowerCase().includes(searchTerm));
+  }
   return (
-    <section className="character-list">
-      <h2>TODO: `array.map()` over your state here!</h2>
-    </section>
+    <ul>
+      {characters.map((character, i) => (
+        <div key={character.id}>
+          <Link to={`/characters/${character.id}`}>{character.name}</Link>
+        </div>
+      ))}
+    </ul>
   );
 }
