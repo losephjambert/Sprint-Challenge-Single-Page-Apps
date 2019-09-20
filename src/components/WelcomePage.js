@@ -54,7 +54,7 @@ export default function WelcomePage() {
             searchResults.results.map(character => {
               return (
                 <div key={character.id}>
-                  <Link to={`/character/${character.id}`}>{character.name}</Link>
+                  <Link to={`/characters/${character.id}`}>{character.name}</Link>
                 </div>
               );
             })}
