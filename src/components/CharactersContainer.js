@@ -35,7 +35,9 @@ const CharactersContainer = props => {
         <SearchForm labelText={'Filter Characters'} searchTerm={searchTerm} handleChange={handleChange} />
         <CharacterList characters={data.results} searchTerm={searchTerm} />
       </section>
-      <button onClick={() => setPageNumber(pageNumber + 1)}>get next page</button>
+      {data.info && data.info.next.length > 0 && (
+        <button onClick={() => setPageNumber(pageNumber + 1)}>Load More Characters</button>
+      )}
     </div>
   );
 };
