@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function CharacterCard({ character, searchResults, match }) {
   character = character || searchResults.find(char => char.id === Number(match.params.id)) || [];
