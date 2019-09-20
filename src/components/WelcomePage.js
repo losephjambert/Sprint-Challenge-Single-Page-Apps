@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-export default function WelcomePage() {
+export default function WelcomePage({ addSearchResults }) {
   const [searchResults, setSearchResults] = useState({});
   return (
     <section className='welcome-page'>
@@ -22,6 +22,7 @@ export default function WelcomePage() {
               .then(response => {
                 console.log(response.data);
                 setSearchResults(response.data);
+                addSearchResults(response.data.results);
                 // resetForm('');
               })
               .catch(error => {
