@@ -27,8 +27,10 @@ const CharactersContainer = props => {
 
   return (
     <div>
-      <div>CharactersContainer</div>
-      <CharacterList characters={data.results} />
+      <section className='character-list'>
+        <h2>Characters</h2>
+        <CharacterList characters={data.results} />
+      </section>
       <button onClick={() => setPageNumber(pageNumber + 1)}>get next page</button>
     </div>
   );
