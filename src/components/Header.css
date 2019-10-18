@@ -1,0 +1,10 @@
+nav a {
+    color: brown;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+nav a:visited {
+    color:brown;
+}
+

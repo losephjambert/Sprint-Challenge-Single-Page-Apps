@@ -9,7 +9,6 @@ import './CharacterList.css'
 const CharactersGrid = styled.section`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(5, 1fr);
     grid-gap: 25px;
     margin: 25px 0;
 `
@@ -57,19 +56,26 @@ export default function CharacterList() {
     return (
         <div>
             <SearchForm characters={characters} setQuery={setQuery} setDisplay={setDisplay} />
-            <CharactersGrid className="character-list">
-                {
-                    query.length
-                    ? display.length
-                        ? display.map(character => <CharacterCard key={character.id} character={character}/>)
-                        : <p>No results found...</p>
-                    : characters.map(character => <CharacterCard key={character.id} character={character}/>)
-                }
-            </CharactersGrid>
+            {
+                characters.length
+                ?   <CharactersGrid className="character-list">
+                        {
+                            !query.length
+                                ? characters.map(character => <CharacterCard key={character.id} character={character}/>)
+                                : query.length < 3
+                                    ? <p>Query must be 3 characters or more.</p>
+                                    : display.length
+                                        ? display.map(character => <CharacterCard key={character.id} character={character}/>)
+                                        : <p>No results found...</p>
+                        }
+                    </CharactersGrid>
+                : <p>loading...</p>
+                 
+            }
 
             <div className='characters-nav-wrapper'>
-                {prev.length ? <CharactersNav className='prev' onClick={changePage}>previous</CharactersNav> : null}
-                {next.length ? <CharactersNav className='next' onClick={changePage}>next</CharactersNav> : null}
+                {prev.length && !query.length ? <CharactersNav className='prev' onClick={changePage}>previous</CharactersNav> : null}
+                {next.length && !query.length ? <CharactersNav className='next' onClick={changePage}>next</CharactersNav> : null}
             </div>
         </div>
     );
