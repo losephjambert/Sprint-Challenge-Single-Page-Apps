@@ -27,7 +27,7 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ]  Explain benefit(s) using `client-side routing`?
 
-> Answer:
+> Answer: Loading with perceptively seem quicker on the user end because there is no page refresh.
 
 ## Project Set Up
 
