@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
-
 import styled from 'styled-components';
+
+import SearchForm from "./SearchForm"
 import CharacterCard from "./CharacterCard";
 import './CharacterList.css'
 
 const CharactersGrid = styled.section`
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     grid-gap: 25px;
-    margin-bottom: 25px;
+    margin: 25px 0;
 `
 
 const CharactersNav = styled.button`
@@ -22,6 +24,8 @@ export default function CharacterList() {
     const [ prev, setPrev ] = useState('')
     const [ next, setNext ] = useState('')
     const [ characters, setCharacters ] = useState([]);
+    const [ query, setQuery ] = useState('');
+    const [ display, setDisplay ] = useState([]);
 
     useEffect(() => {
         axios
@@ -51,15 +55,22 @@ export default function CharacterList() {
     }
 
     return (
-        <>
+        <div>
+            <SearchForm characters={characters} setQuery={setQuery} setDisplay={setDisplay} />
             <CharactersGrid className="character-list">
-                {characters.map(character => <CharacterCard key={character.id} character={character}/>)}
+                {
+                    query.length
+                    ? display.length
+                        ? display.map(character => <CharacterCard key={character.id} character={character}/>)
+                        : <p>No results found...</p>
+                    : characters.map(character => <CharacterCard key={character.id} character={character}/>)
+                }
             </CharactersGrid>
 
             <div className='characters-nav-wrapper'>
                 {prev.length ? <CharactersNav className='prev' onClick={changePage}>previous</CharactersNav> : null}
                 {next.length ? <CharactersNav className='next' onClick={changePage}>next</CharactersNav> : null}
             </div>
-        </>
+        </div>
     );
 }
