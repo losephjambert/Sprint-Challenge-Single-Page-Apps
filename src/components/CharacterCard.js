@@ -6,7 +6,6 @@ const Card = styled.div`
     flex-direction: column;
     align-items: center;
     box-shadow: 0px 0px 10px grey;
-    margin-bottom: 10px;
     padding: 5px;
 
     .imgWrapper {

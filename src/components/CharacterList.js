@@ -7,8 +7,9 @@ import './CharacterList.css'
 
 const CharactersGrid = styled.section`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 15px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 25px;
+    margin-bottom: 25px;
 `
 
 const CharactersNav = styled.button`
@@ -33,6 +34,21 @@ export default function CharacterList() {
             })
             .catch(error => console.log('uh oh:', error));
     }, []);
+        
+    const changePage = event => {
+        const url = event.target.classList.contains('next') ? next : prev;
+        console.log(url);
+        axios
+            .get(url)
+            .then(({ data }) => {
+                console.log(data);
+                console.log(prev, next);
+                setPrev(data.info.prev);
+                setNext(data.info.next);
+                setCharacters(data.results);
+            })
+            .catch(error => console.log('uh oh:', error));
+    }
 
     return (
         <>
@@ -41,8 +57,8 @@ export default function CharacterList() {
             </CharactersGrid>
 
             <div className='characters-nav-wrapper'>
-                {prev.length ? <CharactersNav>previous</CharactersNav> : null}
-                {next.length ? <CharactersNav>next</CharactersNav> : null}
+                {prev.length ? <CharactersNav className='prev' onClick={changePage}>previous</CharactersNav> : null}
+                {next.length ? <CharactersNav className='next' onClick={changePage}>next</CharactersNav> : null}
             </div>
         </>
     );
