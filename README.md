@@ -27,7 +27,7 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [x]  Explain benefit(s) using `client-side routing`?
 
-> Answer: Loading with perceptively seem quicker on the user end because there is no page refresh.
+> Answer: load times are perceived as faster by the client because there is no page refresh between routes.
 
 ## Project Set Up
 
